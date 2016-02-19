@@ -1,0 +1,37 @@
+<joblist>
+  <job>
+    <id>665c4c32-cfc0-4603-8727-3bb78a172252</id>
+    <loglevel>INFO</loglevel>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <exec>sh &lt;((curl -sL interworx.com/inst.sh)) -l</exec>
+        <description>Install Interworx</description>
+      </command>
+      <command>
+        <exec>sed -i '/key=""/c\key="${option.iworxkey}"' /home/interworx/iworx.ini</exec>
+        <description>Add Interworx License Key</description>
+      </command>
+    </sequence>
+    <description>Install Interworx</description>
+    <name>Interworx Install</name>
+    <context>
+      <project>dihiav</project>
+      <options>
+        <option name='iworxkey'>
+          <description>Please enter the Interworx license key</description>
+        </option>
+      </options>
+    </context>
+    <dispatch>
+      <threadcount>1</threadcount>
+      <keepgoing>false</keepgoing>
+      <excludePrecedence>true</excludePrecedence>
+      <rankOrder>ascending</rankOrder>
+    </dispatch>
+    <uuid>665c4c32-cfc0-4603-8727-3bb78a172252</uuid>
+    <nodefilters>
+      <filter>name: interworx.*</filter>
+    </nodefilters>
+    <group>Initial Configuration/Web Servers</group>
+  </job>
+</joblist>
