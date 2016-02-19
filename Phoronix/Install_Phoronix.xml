@@ -1,0 +1,58 @@
+<joblist>
+  <job>
+    <description><![CDATA[yum -y update &&
+yum -y install wget nano epel-release php-php-cli php-xml php-gd &&
+wget http://www.phoronix-test-suite.com/releases/phoronix-test-suite-6.2.0.tar.gz &&
+tar -xvf phoronix-test-suite-6.2.0.tar.gz &&
+rm -rf phoronix-test-suite-6.2.0.tar.gz &&
+cd phoronix-test-suite &&
+chmod a+x install-sh &&
+./install-sh &&]]></description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <threadcount>3</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <id>084e948b-598f-48b3-a8af-150df23c9f85</id>
+    <loglevel>INFO</loglevel>
+    <name>Install Phoronix</name>
+    <nodefilters>
+      <filter>tags: orionvm</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <description>Update server</description>
+        <exec>yum -y update</exec>
+      </command>
+      <command>
+        <description>Install pre-reqs</description>
+        <exec>yum -y install wget nano epel-release php-php-cli php-xml php-gd gcc glibc c screen</exec>
+      </command>
+      <command>
+        <description>Download Phoronix</description>
+        <exec>wget http://www.phoronix-test-suite.com/releases/phoronix-test-suite-6.2.0.tar.gz</exec>
+      </command>
+      <command>
+        <description>untar phoronix</description>
+        <exec>tar -xvf phoronix-test-suite-6.2.0.tar.gz</exec>
+      </command>
+      <command>
+        <description>remove phoronix tarball</description>
+        <exec>rm -rf phoronix-test-suite-6.2.0.tar.gz</exec>
+      </command>
+      <command>
+        <description>Set permissions</description>
+        <exec>chmod a+x phoronix-test-suite/install-sh</exec>
+      </command>
+      <command>
+        <description>Install Phoronix</description>
+        <exec>./phoronix-test-suite/install-sh</exec>
+      </command>
+    </sequence>
+    <uuid>084e948b-598f-48b3-a8af-150df23c9f85</uuid>
+  </job>
+</joblist>
